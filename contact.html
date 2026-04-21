@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Dash Porter, MD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2639;
+      --slate: #3e5068;
+      --gold: #b8965a;
+      --cream: #f7f4ef;
+      --light: #edeae3;
+      --text: #2c3340;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184,150,90,0.2);
+    }
+
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--slate);
+      text-decoration: none;
+      margin-left: 2.5rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* CONTACT LAYOUT */
+    .contact-wrap {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 70px;
+    }
+
+    .contact-left {
+      background: var(--navy);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .contact-left .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-left h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .contact-left p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.7);
+      max-width: 380px;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-detail .detail-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      width: 60px;
+      flex-shrink: 0;
+    }
+
+    .contact-detail .detail-value {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* FORM SIDE */
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem;
+      animation: fadeUp 1s ease both;
+    }
+
+    .disclaimer {
+      background: rgba(184,150,90,0.1);
+      border-left: 3px solid var(--gold);
+      padding: 0.9rem 1.1rem;
+      font-size: 0.78rem;
+      line-height: 1.7;
+      color: var(--slate);
+      margin-bottom: 2.5rem;
+    }
+
+    .disclaimer strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    .form-group {
+      margin-bottom: 1.4rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--light);
+      background: white;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.92rem;
+      color: var(--navy);
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group textarea {
+      height: 130px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.95rem;
+      background: var(--navy);
+      color: white;
+      border: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .submit-btn:hover { background: var(--slate); }
+
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .success-msg h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--navy);
+      margin-bottom: 0.8rem;
+    }
+
+    .success-msg p {
+      font-size: 0.9rem;
+      color: var(--slate);
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(44,51,64,0.4);
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links a { margin-left: 1.2rem; font-size: 0.72rem; }
+
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-left {
+        padding: 3.5rem 2rem 3rem;
+      }
+
+      .contact-right {
+        padding: 3rem 2rem 4rem;
+      }
+
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="index.html">Dash Porter, MD</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cv.html">CV</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="contact-wrap">
+
+    <div class="contact-left">
+      <p class="eyebrow">Get in Touch</p>
+      <h1>Professional<br>Inquiries</h1>
+      <div class="divider"></div>
+      <p>This contact form is intended for professional correspondence — colleagues, medical organizations, speaking opportunities, or general professional inquiries.</p>
+      <div class="contact-detail">
+        <span class="detail-label">Email</span>
+        <span class="detail-value">dash.porter@gmail.com</span>
+      </div>
+      <div class="contact-detail">
+        <span class="detail-label">Location</span>
+        <span class="detail-value">Grand Junction, Colorado</span>
+      </div>
+    </div>
+
+    <div class="contact-right">
+
+      <div class="disclaimer">
+        <strong>&#9888; Important Notice</strong>
+        This form is for professional inquiries only. Please do not submit any personal health information, medical questions, or patient-related content. For medical concerns, please contact your healthcare provider directly.
+      </div>
+
+      <!--
+        CONTACT FORM SETUP INSTRUCTIONS:
+        ─────────────────────────────────────────────────────────────────
+        This form uses Formspree (https://formspree.io) — a free service
+        that forwards form submissions to your email. It's free for up to
+        50 submissions/month and requires no backend server.
+
+        TO SET IT UP:
+        1. Go to https://formspree.io and create a free account
+        2. Create a new form — you'll receive a unique form ID
+        3. Replace "YOUR_FORMSPREE_ID" in the action URL below with your ID
+           Example: action="https://formspree.io/f/abcd1234"
+        4. That's it — submissions will arrive in your inbox.
+
+        HIPAA NOTE: Formspree is not a HIPAA-compliant service.
+        This form is intentionally scoped to professional inquiries only
+        and includes a disclaimer above to prevent patient data submission.
+        ─────────────────────────────────────────────────────────────────
+      -->
+      <div id="contact-form-wrap">
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Your name" />
+            </div>
+            <div class="form-group">
+              <label for="org">Organization</label>
+              <input type="text" id="org" name="organization" placeholder="Hospital / Institution" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="reason">Reason for Contact</label>
+            <select id="reason" name="reason">
+              <option value="">Select one...</option>
+              <option>Professional Inquiry</option>
+              <option>Speaking / Presentation</option>
+              <option>Medical Colleague</option>
+              <option>Locum / Staffing Inquiry</option>
+              <option>Other Professional</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Your message..."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+
+      <div class="success-msg" id="success-msg">
+        <h3>Message Sent</h3>
+        <p>Thank you for reaching out. I will be in touch as soon as I am able.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 Louis-Bassett Porter, M.D. &nbsp;·&nbsp; Grand Junction, Colorado
+  </footer>
+
+  <script>
+    // Handle form submission feedback
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', function(e) {
+      // If Formspree ID is not yet set, show a local success message
+      const action = form.getAttribute('action');
+      if (action.includes('YOUR_FORMSPREE_ID')) {
+        e.preventDefault();
+        document.getElementById('contact-form-wrap').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+      }
+      // If real Formspree ID is set, the form submits normally
+    });
+  </script>
+
+</body>
+</html>

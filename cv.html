@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV — Dash Porter, MD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2639;
+      --slate: #3e5068;
+      --gold: #b8965a;
+      --cream: #f7f4ef;
+      --light: #edeae3;
+      --text: #2c3340;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184,150,90,0.2);
+    }
+
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--slate);
+      text-decoration: none;
+      margin-left: 2.5rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* PASSWORD GATE */
+    #password-gate {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 70px;
+    }
+
+    .gate-box {
+      text-align: center;
+      max-width: 380px;
+      padding: 3.5rem 2.5rem;
+      background: white;
+      border: 1px solid rgba(184,150,90,0.25);
+      box-shadow: 0 8px 40px rgba(26,38,57,0.07);
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .gate-box .lock-icon {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.4;
+    }
+
+    .gate-box h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .gate-box p {
+      font-size: 0.85rem;
+      color: var(--slate);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .gate-box input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--light);
+      background: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .gate-box input:focus {
+      border-color: var(--gold);
+    }
+
+    .gate-box button {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--navy);
+      color: white;
+      border: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .gate-box button:hover { background: var(--slate); }
+
+    .gate-error {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #c0392b;
+      display: none;
+    }
+
+    /* CV CONTENT */
+    #cv-content {
+      display: none;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .cv-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .cv-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .cv-header .subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--slate);
+      margin-bottom: 1rem;
+    }
+
+    .cv-header .contact-line {
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      color: var(--slate);
+    }
+
+    .cv-section {
+      margin-bottom: 3rem;
+    }
+
+    .cv-section-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--light);
+    }
+
+    .cv-entry {
+      margin-bottom: 1.5rem;
+    }
+
+    .cv-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .cv-entry-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .cv-entry-date {
+      font-size: 0.8rem;
+      color: var(--slate);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .cv-entry-institution {
+      font-size: 0.9rem;
+      color: var(--slate);
+      margin-bottom: 0.3rem;
+    }
+
+    .cv-entry-detail {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .cv-entry-detail li {
+      list-style: none;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.25rem;
+    }
+
+    .cv-entry-detail li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    .sub-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin: 1rem 0 0.4rem;
+      font-style: italic;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(44,51,64,0.4);
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links a { margin-left: 1.2rem; font-size: 0.72rem; }
+      .cv-entry-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="index.html">Dash Porter, MD</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cv.html">CV</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- PASSWORD GATE -->
+  <div id="password-gate">
+    <div class="gate-box">
+      <div class="lock-icon">&#128274;</div>
+      <h2>Curriculum Vitae</h2>
+      <p>This section is password protected.<br>Please enter the password to continue.</p>
+      <input type="password" id="pw-input" placeholder="Password" onkeydown="if(event.key==='Enter') checkPassword()" />
+      <button onclick="checkPassword()">Enter</button>
+      <p class="gate-error" id="gate-error">Incorrect password. Please try again.</p>
+    </div>
+  </div>
+
+  <!-- CV CONTENT (hidden until password correct) -->
+  <div id="cv-content">
+
+    <div class="cv-header">
+      <h1>Louis-Bassett Porter, M.D.</h1>
+      <p class="subtitle">Dash Porter, MD</p>
+      <p class="contact-line">Grand Junction, CO &nbsp;·&nbsp; dash.porter@gmail.com &nbsp;·&nbsp; dash-porter.com</p>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="cv-section">
+      <div class="cv-section-title">Medical Education &amp; Training</div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">Internal Medicine Residency</span>
+          <span class="cv-entry-date">2017 – 2020</span>
+        </div>
+        <div class="cv-entry-institution">University of Vermont Medical Center</div>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">Doctor of Medicine</span>
+          <span class="cv-entry-date">2013 – 2017</span>
+        </div>
+        <div class="cv-entry-institution">Penn State College of Medicine</div>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">Bachelor of Science, Behavioral Science and Health</span>
+          <span class="cv-entry-date">2007 – 2012</span>
+        </div>
+        <div class="cv-entry-institution">University of Utah &nbsp;·&nbsp; <em>cum laude</em></div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATION -->
+    <div class="cv-section">
+      <div class="cv-section-title">Certification, Licensure &amp; Accreditations</div>
+      <ul class="cv-entry-detail">
+        <li>ABIM – Board Certified, 2020</li>
+        <li>State of Colorado Physician License, 2021 – present</li>
+        <li>DEA License, 2020 – present</li>
+        <li>BLS / ACLS Certified, current</li>
+      </ul>
+    </div>
+
+    <!-- WORK EXPERIENCE -->
+    <div class="cv-section">
+      <div class="cv-section-title">Work Experience</div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">Hospitalist Physician</span>
+          <span class="cv-entry-date">January 2020 – Present</span>
+        </div>
+        <div class="cv-entry-detail" style="margin-bottom:0.8rem;">
+          Management of hospitalized adult patients, admissions, discharges, cross-cover, and inpatient procedures including basic ventilator management.
+        </div>
+
+        <div class="sub-label">Primary Position</div>
+        <ul class="cv-entry-detail">
+          <li>St. Mary's Medical Center — Grand Junction, CO &nbsp;·&nbsp; 310 beds, Level II Trauma Center &nbsp;·&nbsp; 09/2021 – Present</li>
+        </ul>
+
+        <div class="sub-label">Per Diem / Locum Positions</div>
+        <ul class="cv-entry-detail">
+          <li>Community Hospital — Grand Junction, CO &nbsp;·&nbsp; 44 beds, 10-bed hospitalist-run ICU &nbsp;·&nbsp; 07/2021 – 01/2026</li>
+          <li>Valley View Hospital — Glenwood Springs, CO &nbsp;·&nbsp; 78 beds &nbsp;·&nbsp; 10/2022 – 12/2025</li>
+          <li>Montrose Regional Hospital — Montrose, CO &nbsp;·&nbsp; 75 beds &nbsp;·&nbsp; 08/2022 – 01/2026</li>
+          <li>Central Vermont Medical Center — Berlin, VT &nbsp;·&nbsp; 122 beds &nbsp;·&nbsp; 01/2020 – 07/2021</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PROFESSIONAL DEVELOPMENT -->
+    <div class="cv-section">
+      <div class="cv-section-title">Professional Development &amp; Teaching</div>
+
+      <div class="sub-label">Residency</div>
+      <ul class="cv-entry-detail" style="margin-bottom:1rem;">
+        <li>Chair, Resident and Fellow Quality Council &nbsp;·&nbsp; 2018 – 2020</li>
+        <li>Clinical Instructor, Larner College of Medicine at the University of Vermont &nbsp;·&nbsp; 2017 – 2020</li>
+      </ul>
+
+      <div class="sub-label">Medical School</div>
+      <ul class="cv-entry-detail" style="margin-bottom:1rem;">
+        <li>Road Scholar</li>
+        <li>Co-President, American Medical Student Association</li>
+        <li>Vice President, Penn State College of Medicine Cycling Club</li>
+        <li>Exercise is Medicine Task Force member</li>
+        <li>Kienle Medical Humanities Committee member</li>
+        <li>Kidney Camp medical volunteer</li>
+      </ul>
+
+      <div class="sub-label">Baccalaureate</div>
+      <ul class="cv-entry-detail">
+        <li><em>Cum laude</em>, Dean's List, Research Scholar Designation, Honors Degree</li>
+      </ul>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="cv-section">
+      <div class="cv-section-title">Career Skills</div>
+      <ul class="cv-entry-detail">
+        <li>Adept in multiple EHR systems: Cerner PowerChart, Allscripts, Meditech, Epic</li>
+        <li>Involvement in quality improvement measures</li>
+        <li>Conversationally fluent in Dutch</li>
+      </ul>
+    </div>
+
+  </div><!-- end cv-content -->
+
+  <footer>
+    &copy; 2026 Louis-Bassett Porter, M.D. &nbsp;·&nbsp; Grand Junction, Colorado
+  </footer>
+
+  <script>
+    // Simple client-side password gate
+    // NOTE: This is sufficient to deter casual browsing.
+    // For highly sensitive content, a server-side solution would be needed.
+    const CORRECT_PASSWORD = "drporter";
+
+    function checkPassword() {
+      const input = document.getElementById('pw-input').value;
+      const error = document.getElementById('gate-error');
+      if (input === CORRECT_PASSWORD) {
+        document.getElementById('password-gate').style.display = 'none';
+        document.getElementById('cv-content').style.display = 'block';
+        error.style.display = 'none';
+      } else {
+        error.style.display = 'block';
+        document.getElementById('pw-input').value = '';
+        document.getElementById('pw-input').focus();
+      }
+    }
+  </script>
+
+</body>
+</html>

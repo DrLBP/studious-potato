@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dash Porter, MD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2639;
+      --slate: #3e5068;
+      --gold: #b8965a;
+      --cream: #f7f4ef;
+      --light: #edeae3;
+      --text: #2c3340;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184,150,90,0.2);
+    }
+
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--slate);
+      text-decoration: none;
+      margin-left: 2.5rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 70px;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--slate);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-bio {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text);
+      max-width: 480px;
+    }
+
+    .hero-bio p + p { margin-top: 1.2rem; }
+
+    /* PHOTO GRID */
+    .hero-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
+      padding: 70px 0 0 0;
+      background: var(--light);
+      animation: fadeIn 1.2s ease both;
+    }
+
+    .photo-slot {
+      background: var(--slate);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .photo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .photo-slot:hover img { transform: scale(1.04); }
+
+    /* placeholder styling when no image is loaded */
+    .photo-slot .placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ABOUT STRIP */
+    .about-strip {
+      background: var(--navy);
+      color: white;
+      display: flex;
+      justify-content: center;
+      gap: 6rem;
+      padding: 3.5rem 4rem;
+      animation: fadeIn 1.4s ease both;
+    }
+
+    .about-item {
+      text-align: center;
+    }
+
+    .about-item .label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .about-item .value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(44,51,64,0.4);
+      text-transform: uppercase;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links a { margin-left: 1.2rem; font-size: 0.72rem; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+
+      .hero-text {
+        padding: 3rem 1.8rem 2.5rem;
+      }
+
+      .hero-photos {
+        height: 55vw;
+        padding-top: 0;
+      }
+
+      .about-strip {
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        padding: 2.5rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="index.html">Dash Porter, MD</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cv.html">CV</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Internal Medicine · Hospitalist</p>
+      <h1>Dash<br>Porter,<br>MD</h1>
+      <p class="hero-title">Louis-Bassett Porter, M.D.</p>
+      <div class="divider"></div>
+      <div class="hero-bio">
+        <p>My name is Louis-Bassett Porter — everyone calls me Dash, because of the hyphen. I am a board-certified internal medicine physician working as a hospitalist in Grand Junction, Colorado.</p>
+        <p>My clinical work centers on the management of complex hospitalized patients at St. Mary's Medical Center, a Level II Trauma Center, alongside per diem roles across the Western Slope.</p>
+        <p>When I am not at the bedside, I am outside — climbing, cycling, and exploring the remarkable landscape that drew me to Colorado in the first place.</p>
+      </div>
+    </div>
+
+    <div class="hero-photos">
+      <!--
+        PHOTO INSTRUCTIONS:
+        Replace the placeholder divs below with <img> tags pointing to your photos.
+        Place your image files in the same folder as this HTML file.
+
+        Example:
+        <div class="photo-slot">
+          <img src="headshot.jpg" alt="Dr. Dash Porter headshot">
+        </div>
+
+        Suggested photos:
+        Slot 1 (top-left):   Professional headshot (white coat)
+        Slot 2 (top-right):  Outdoors / action photo
+        Slot 3 (bottom-left): Outdoors / scenery photo
+        Slot 4 (bottom-right): Your choice
+      -->
+      <div class="photo-slot">
+        <div class="placeholder">Photo 1<br>Headshot</div>
+      </div>
+      <div class="photo-slot">
+        <div class="placeholder">Photo 2<br>Outdoors</div>
+      </div>
+      <div class="photo-slot">
+        <div class="placeholder">Photo 3<br>Outdoors</div>
+      </div>
+      <div class="photo-slot">
+        <div class="placeholder">Photo 4<br>Outdoors</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="about-strip">
+    <div class="about-item">
+      <div class="label">Specialty</div>
+      <div class="value">Internal Medicine</div>
+    </div>
+    <div class="about-item">
+      <div class="label">Role</div>
+      <div class="value">Hospitalist Physician</div>
+    </div>
+    <div class="about-item">
+      <div class="label">Based in</div>
+      <div class="value">Grand Junction, CO</div>
+    </div>
+    <div class="about-item">
+      <div class="label">Board Certified</div>
+      <div class="value">ABIM, 2020</div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 Louis-Bassett Porter, M.D. &nbsp;·&nbsp; Grand Junction, Colorado
+  </footer>
+
+</body>
+</html>
